@@ -1,6 +1,6 @@
 # The MandelP5ot project
 
-... a modest Zoom on the Mandelbrot Set with P5.js and the Webworker API
+A modest Zoom on the Mandelbrot Set with P5.js and the Webworker API
  
 ---------
 
@@ -38,7 +38,7 @@ If you want to know more about Benoît Mandelbrot :
 -----------
 
 Join our team of creative coders on the Meetup CreativeCodeParis:
-https://www.meetup.com/CreativeCodeParis
-https://github.com/gregja/CreativeCodingParis
+- https://www.meetup.com/CreativeCodeParis
+- https://github.com/gregja/CreativeCodingParis
 
 
