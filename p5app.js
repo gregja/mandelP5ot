@@ -1,6 +1,4 @@
-// This issue explains why I chose to superpoze an img tag and the P5 canvas
-//  for displaying the zoom on the mandelbrot set
-// https://github.com/processing/p5.js/issues/2077
+
 
 var s = function( sketch ) {
 
@@ -109,25 +107,29 @@ var s = function( sketch ) {
         }
     }
     
-    // save the current picture
+// Solution de sauvegarde abandonnée car ne fonctionnait qu'avec Chrome
+//    function save_picture() {
+//        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount + ".png";       
+//        
+//        var link = document.createElement('a');
+//        link.innerHTML = 'Save picture';
+//
+//        setTimeout(function () {
+//            console.log('save picture '+tmp_name);
+//            link.href = cnv0.src;
+//            link.download = tmp_name;
+//            link.target = '_blank';
+//           link.click();
+//        }, 0);
+//    }
     function save_picture() {
-        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount + ".png";
-        console.log('save picture '+tmp_name);
-        
-        // saveCanvas("mandelbrot-zoom-" + frameCount + ".png", 'png');
-        //  => not possible here because the picture is in the img tag and not
-        //     in the canvas
-              
-        var link = document.createElement('a');
-        link.innerHTML = 'Save picture';
-        link.style.display = 'none';
-        link.href = cnv0.src;
-        //link.target = '_blank';
-        link.addEventListener('click', function(e) {
-            //e.preventDefault();
-            link.download = tmp_name;
-        }, false);
-        link.click();
+        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount ;       
+        // copie provoisoire de l'image sur le canvas pour sauvegarde
+        cnv1.elt.getContext('2d').drawImage(cnv0, 0, 0);
+        // on profite de la fonction saveCanvas fournie par P5
+        sketch.saveCanvas(cnv1, tmp_name, 'png');
+        // vidage du canvas 
+        cnv1.clear();
     }
 
     sketch.setup = function() {

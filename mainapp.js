@@ -74,26 +74,20 @@ var selectZoom = function(param) {
                 myGlobals.params.flag_restart = true;
                 myGlobals.params.force_rezoom = true;
             }
-            
             //console.log(this.getAttribute('data-action'), this.getAttribute('data-value'));
         }, true); 
         
         data_actions[mo].addEventListener("click", function(evt){
+            evt.preventDefault();
             clearMenu();
             myGlobals.params.flag_rezoom = false;
             if (this.getAttribute('data-action') == 'selectColor') {
-                evt.preventDefault();
                 myGlobals.params.color_mode = this.getAttribute('data-value');
             }
             if (this.getAttribute('data-action') == 'selectZoom') {
-                evt.preventDefault();
                 myGlobals.params.current_zoom = parseInt(this.getAttribute('data-value')) - 1;
                 myGlobals.params.flag_restart = true;
                 myGlobals.params.force_rezoom = true;
-            }
-            if (this.getAttribute('target') && this.getAttribute('target') == '_blank') {
-                evt.preventDefault();
-                this.click();
             }
             //console.log(this.getAttribute('data-action'), this.getAttribute('data-value'));
         }, true);     
