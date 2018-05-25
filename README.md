@@ -17,12 +17,12 @@ so the opportunity was too good, I could not miss it ;)
 You can play with this project in live mode, on Codepen :
 https://codepen.io/gregja/project/full/ALGpyv/
 
+... and on Thimble :
+https://thimbleprojects.org/gregja/481912
+
 The zoom series is taken from the book of Robert Dony : 
 "Graphisme dans le plan et dans l'espace avec Turbo Pascal" (ed. Masson 1991)
 The Javascript algorithm is a free adaptation of the algorithm of the book. 
-
-Be careful : there is a bug with the "save" button, it doesn't work on Firefox,
-but it works fine on Chrome. I'll try to correct it quickly.
 
 -----------
 
