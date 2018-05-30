@@ -6,6 +6,8 @@
 var myGlobals = {};
 
 myGlobals.zooms = [];
+myGlobals.zooms.push({name:"zoom 0", x1: -2, y1: -1.25, 
+    x2: 0.55, y2: 1.25, lim: 350});
 myGlobals.zooms.push({name:"zoom 1", x1: -0.75104, y1: 0.10511, 
     x2: -0.74080, y2: 0.11536, lim: 350});
 myGlobals.zooms.push({name:"zoom 2", x1: -0.67166, y1: 0.49216, 
