@@ -69,7 +69,7 @@ var s = function( sketch ) {
         if (e.data.length == 1 && e.data[0] == 'XXX') {
             datas.push(e.data);
             var timer_end = new Date();
-            var message = 'Webworker ended normally after (draw function works) : ' 
+            var message = 'Webworker ended normally after (draw function works) : '
                     + calc_time_diff(timer_start, timer_end);
             console.log(message);
             console.log('Nombre de tableaux à traiter : ', datas.length);
@@ -82,7 +82,7 @@ var s = function( sketch ) {
             datas.push(e.data);
         }
     };
-    
+
     // Color Change (a=RGB, b=HSL, c=HSB)
     function colormode_switch(value) {
         myGlobals.params.color_mode = value;
@@ -92,7 +92,7 @@ var s = function( sketch ) {
         max_dataset = null;
         myGlobals.params.flag_rezoom = false;
     }
-    
+
     // Focal change
     function datazoom_switch(number) {
         number = parseInt(number);
@@ -106,11 +106,11 @@ var s = function( sketch ) {
             myGlobals.params.save_pict = false;
         }
     }
-    
+
 // Solution de sauvegarde abandonnée car ne fonctionnait qu'avec Chrome
 //    function save_picture() {
-//        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount + ".png";       
-//        
+//        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount + ".png";
+//
 //        var link = document.createElement('a');
 //        link.innerHTML = 'Save picture';
 //
@@ -123,12 +123,12 @@ var s = function( sketch ) {
 //        }, 0);
 //    }
     function save_picture() {
-        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount ;       
+        var tmp_name = "mandelbrot-zoom-" + sketch.frameCount ;
         // copie provoisoire de l'image sur le canvas pour sauvegarde
         cnv1.elt.getContext('2d').drawImage(cnv0, 0, 0);
         // on profite de la fonction saveCanvas fournie par P5
         sketch.saveCanvas(cnv1, tmp_name, 'png');
-        // vidage du canvas 
+        // vidage du canvas
         cnv1.clear();
     }
 
@@ -150,9 +150,9 @@ var s = function( sketch ) {
         idx_dataset = null;
         max_dataset = null;
 
-        myWorker.postMessage([myGlobals.params.x1, myGlobals.params.y1, 
-            myGlobals.params.x2, myGlobals.params.y2, canvas_width, canvas_height, 
-            myGlobals.params.lim, myGlobals.params.lim, 
+        myWorker.postMessage([myGlobals.params.x1, myGlobals.params.y1,
+            myGlobals.params.x2, myGlobals.params.y2, canvas_width, canvas_height,
+            myGlobals.params.lim, myGlobals.params.lim,
             max_colors]); // Sending message as an array to the worker
 
     };
@@ -162,7 +162,7 @@ var s = function( sketch ) {
             myGlobals.params.save_pict = false;
             save_picture();
         }
-        
+
         if (color_mode != myGlobals.params.color_mode) {
             // detect a color changing via the menu (external to P5)
             colormode_switch(myGlobals.params.color_mode);
@@ -180,7 +180,7 @@ var s = function( sketch ) {
                 cnv1.clear();
                 overlay();
             }
-            
+
         }
         if (cur_dataset == null || datas[cur_dataset] == undefined) {
             // nothing to do, we wait, unless a recalculation request
@@ -191,7 +191,7 @@ var s = function( sketch ) {
                 myGlobals.params.flag_restart = false;
 
                 // clear the picture saved to avoid an unpleasant glitch effect
-                //  during the copy of the picture, from the canvas to 
+                //  during the copy of the picture, from the canvas to
                 //  the "img" tag
                 cnv0.setAttribute('src', null);
                 datas = [];
@@ -199,10 +199,10 @@ var s = function( sketch ) {
                 idx_dataset = null;
                 max_dataset = null;
                 console.log('relance');
-                myWorker.postMessage([myGlobals.params.x1, myGlobals.params.y1, 
-                    myGlobals.params.x2, myGlobals.params.y2, canvas_width, 
-                    canvas_height, myGlobals.params.lim, myGlobals.params.lim, 
-                    max_colors]); // Sending message as an array to the worker    
+                myWorker.postMessage([myGlobals.params.x1, myGlobals.params.y1,
+                    myGlobals.params.x2, myGlobals.params.y2, canvas_width,
+                    canvas_height, myGlobals.params.lim, myGlobals.params.lim,
+                    max_colors]); // Sending message as an array to the worker
             }
         } else {
             // could be use to reverse the Y axis (but not activated here)
@@ -224,7 +224,7 @@ var s = function( sketch ) {
                     var c;
                     if (color_mode == 'a') {
                         var tmp_b = data.c + 20;
-                        c = sketch.color('rgb(' + data.c + ',' + data.c + ',' + 
+                        c = sketch.color('rgb(' + data.c + ',' + data.c + ',' +
                                 tmp_b + ')');
                     } else {
                         if (color_mode == 'b') {
@@ -245,7 +245,7 @@ var s = function( sketch ) {
             if (datas[cur_dataset] == 'XXX') {
                 cur_dataset = null; // mise en sommeil du code relatif au tracé du graphe
                 var timer_end = new Date();
-                var message = 'graph ended normally after : ' + 
+                var message = 'graph ended normally after : ' +
                         calc_time_diff(timer_start, timer_end);
                 console.log(message);
                 myGlobals.params.flag_rezoom = true;
@@ -270,20 +270,20 @@ var s = function( sketch ) {
             // zoom not available for the moment
             return;
         }
-        if (sketch.mouseX < 0 || sketch.mouseX > canvas_width || 
+        if (sketch.mouseX < 0 || sketch.mouseX > canvas_width ||
                 sketch.mouseY < 0 || sketch.mouseY > canvas_height) {
             // we are not in the canvas, get out !
             return;
         }
         cur_dataset == null
         myGlobals.params.flag_restart = true;
-        let tx1 = sketch.map((sketch.mouseX - 50), 0, canvas_width, 
+        let tx1 = sketch.map((sketch.mouseX - 50), 0, canvas_width,
             myGlobals.params.x1, myGlobals.params.x2, true);
-        let ty1 = sketch.map((sketch.mouseY - 50), 0, canvas_height, 
+        let ty1 = sketch.map((sketch.mouseY - 50), 0, canvas_height,
             myGlobals.params.y1, myGlobals.params.y2, true);
-        let tx2 = sketch.map((sketch.mouseX + 50), 0, canvas_width, 
+        let tx2 = sketch.map((sketch.mouseX + 50), 0, canvas_width,
             myGlobals.params.x1, myGlobals.params.x2, true);
-        let ty2 = sketch.map((sketch.mouseY + 50), 0, canvas_height, 
+        let ty2 = sketch.map((sketch.mouseY + 50), 0, canvas_height,
             myGlobals.params.y1, myGlobals.params.y2, true);
         myGlobals.params.x1 = tx1;
         myGlobals.params.y1 = ty1;
@@ -296,13 +296,13 @@ var s = function( sketch ) {
         } else {
             myGlobals.params.lim = tmp_lim;
         }
-        
-        console.log(myGlobals.params.x1, myGlobals.params.y1, 
+
+        console.log(myGlobals.params.x1, myGlobals.params.y1,
             myGlobals.params.x2, myGlobals.params.y2, myGlobals.params.lim);
         myGlobals.params.flag_rezoom = false;
         // Clean the canvas for new drawing
         cnv1.background(255);
-        
+
     };
 
     sketch.keyPressed = function() {
@@ -331,5 +331,7 @@ var s = function( sketch ) {
     }
 
 };
-
-var myp5 = new p5(s);
+document.addEventListener("DOMContentLoaded", function(event) {
+  console.log("DOM fully loaded and parsed");
+  var myp5 = new p5(s);
+});
